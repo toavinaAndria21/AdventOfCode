@@ -1,0 +1,13 @@
+{
+  "name": "2023-day-2",
+  "version": "1.0.0",
+  "main": "Part-One.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
