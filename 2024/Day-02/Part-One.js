@@ -5,26 +5,26 @@ import {readFile} from 'node:fs/promises';
 const fileContent = await readFile('input.txt', 'utf8');
 let safeReports = 0; // Final result
 
-let eachLine = fileContent.trim().split('\n'); // recupère chaque ligne du fichier
-eachLine.map((line, i) => {
-    let array = line.split(' ')
-    if( (isIncreasing(array) || isDecreasing(array)) && difference(1, 3, array)) {
-        safeReports ++
+let eachLine = fileContent.trim().split('\n'); // get each line of the file
+eachLine.forEach((line) => {
+    let array = line.split(' ').map(Number);
+    if ((isIncreasing(array) || isDecreasing(array)) && difference(1, 3, array)) {
+        safeReports += 1;
     }
-})
+});
 
 console.log(safeReports)
+
+
 function difference(min, max, array) {
-    let isCorrect = true
     let space = 0
     for (let i = 0; i < array.length; i++) {
         space = Math.abs(array[i] - array[i + 1])
         if ( space < min || space > max ) 
-            isCorrect = false
+            return false
     }
-    return isCorrect
+    return true
 }
-
 
 /**
  * Veirify if a sequence of number is increasing or not 
@@ -33,13 +33,11 @@ function difference(min, max, array) {
  */
 function isIncreasing(array) {
 
-    let isIncreasing = true // by default, we suppose that the sequence is increasing
-    for (let i = 0; i < array.length; i++) {
-        if ( array[i] >= array[i+1] ) // if the next number is less than the current number, we set isIncreasing to false
-            isIncreasing = false  
+    for (let i = 0; i < array.length - 1; i++) {
+        if ( array[i] >= array[i+1] ) // if the next number is less than the current number, we return false
+            return false  
     }
-
-    return isIncreasing // return the result
+    return true 
 }
 
 /**
@@ -49,11 +47,9 @@ function isIncreasing(array) {
  */
 function isDecreasing(array) {
     
-    let isDecreasing = true // by default, we suppose that the sequence is decreasing
-    for (let i = 0; i < array.length; i++) {
-        if ( array[i] <= array[i+1] ) // if the next number is bigger than the current number, we set decreasing to false
-            isDecreasing = false
+    for (let i = 0; i < array.length - 1; i++) {
+        if ( array[i] <= array[i+1] ) // if the next number is bigger than the current number, we return false
+            return false
     }
-
-    return isDecreasing // return the result
+    return true 
 }
