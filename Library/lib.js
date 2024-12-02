@@ -1,3 +1,19 @@
+/**
+ * List of functions :
+ * -isDigit() ====> veirify if caracter is a number or not
+ * -isTheStringDigit() ====> veirify if the string is a number
+ * -isIncreasing() ====> veirify if the array is increasing or not
+ * -isDecreasing() ====> veirify if the array is decreasing or not
+ */
+
+// ............................................ || ...........................................................................
+
+
+/**
+ * verify if caracter is a number or not
+ * @param {char} car 
+ * @returns {boolean} 
+ */
 export function isDigit(car) {
     let digits = [0,1,2,3,4,5,6,7,8,9]
     for(const digit in digits)
@@ -6,6 +22,7 @@ export function isDigit(car) {
     }
     return false
 }
+
 export function isTheStringDigit(car, file, i) {
 
     switch (car) {
@@ -44,4 +61,36 @@ export function isTheStringDigit(car, file, i) {
             return '9'
         break
     }
+}
+
+/**
+ * Verify if a sequence of number is increasing or not 
+ * @param {array<number>} array 
+ * @returns {boolean} isInscreasing
+ */
+export function isIncreasing(array) {
+
+    let isIncreasing = true // by default, we suppose that the sequence is increasing
+    for (let i = 0; i < array.length; i++) {
+        if ( array[i] >= array[i+1] ) // if the next number is less than the current number, we set isIncreasing to false
+            isIncreasing = false  
+    }
+
+    return isIncreasing // return the result
+}
+
+/**
+ * Verify if a sequence of number is decreasing or not 
+ * @param {array<number>} array 
+ * @returns {boolean} isDecreasing
+ */
+export function isDecreasing(array) {
+    
+    let isDecreasing = true // by default, we suppose that the sequence is decreasing
+    for (let i = 0; i < array.length; i++) {
+        if ( array[i] <= array[i+1] ) // if the next number is bigger than the current number, we set decreasing to false
+            isDecreasing = false
+    }
+
+    return isDecreasing // return the result
 }
