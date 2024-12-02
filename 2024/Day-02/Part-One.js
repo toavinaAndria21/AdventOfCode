@@ -1,50 +1,59 @@
 import {readFile} from 'node:fs/promises';
+// import {isIncreasing} from '../../Library/lib.js'
+// import {isDecreasing} from '../../Library/lib.js'
 
-const fileContent = await readFile('essai.txt', 'utf8');
+const fileContent = await readFile('input.txt', 'utf8');
 let safeReports = 0; // Final result
 
-let eachLine = fileContent.trim().split('\n'); // recupère chaque ligne
-
+let eachLine = fileContent.trim().split('\n'); // recupère chaque ligne du fichier
 eachLine.map((line, i) => {
     let array = line.split(' ')
-
-    if( isInscreasing(array) ) {
-        let differenceIncrease = []
-        let currentDigit = array[0]
-        for (let i = 0; i < array.length; i++) {
-            if( i != array.length - 1 )
-                {
-                    differenceIncrease.push( array[i+1] - currentDigit ) 
-                    currentDigit = array[i+1]
-                }
-        }
-     console.log("Increase : " + differenceIncrease)
-    }
-    else {
-        let differenceDecrease = []
-        let currentDigit = array[0]
-        for (let i = 0; i < array.length; i++) {
-            if( i != array.length - 1 )
-                {
-                    differenceDecrease.push( currentDigit - array[i+1] ) 
-                    currentDigit = array[i+1]
-                }
-        }   
-        console.log("Decrease : " + differenceDecrease)
+    if( (isIncreasing(array) || isDecreasing(array)) && difference(1, 3, array)) {
+        safeReports ++
     }
 })
 
-function isInscreasing(array) {
-    let isIncreasing = true
-    let firstDigit = array[0]
-
+console.log(safeReports)
+function difference(min, max, array) {
+    let isCorrect = true
+    let space = 0
     for (let i = 0; i < array.length; i++) {
-        if (firstDigit < array[i] )
-            {
-                firstDigit = array[i]
-            }
-        else isIncreasing = false
+        space = Math.abs(array[i] - array[i + 1])
+        if ( space < min || space > max ) 
+            isCorrect = false
+    }
+    return isCorrect
+}
+
+
+/**
+ * Veirify if a sequence of number is increasing or not 
+ * @param {array<number>} array 
+ * @returns {boolean} isInscreasing
+ */
+function isIncreasing(array) {
+
+    let isIncreasing = true // by default, we suppose that the sequence is increasing
+    for (let i = 0; i < array.length; i++) {
+        if ( array[i] >= array[i+1] ) // if the next number is less than the current number, we set isIncreasing to false
+            isIncreasing = false  
     }
 
-    return isIncreasing
+    return isIncreasing // return the result
+}
+
+/**
+ * Veirify if a sequence of number is decreasing or not 
+ * @param {array<number>} array 
+ * @returns {boolean} isDecreasing
+ */
+function isDecreasing(array) {
+    
+    let isDecreasing = true // by default, we suppose that the sequence is decreasing
+    for (let i = 0; i < array.length; i++) {
+        if ( array[i] <= array[i+1] ) // if the next number is bigger than the current number, we set decreasing to false
+            isDecreasing = false
+    }
+
+    return isDecreasing // return the result
 }
