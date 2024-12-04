@@ -1,6 +1,6 @@
 import {readFile} from 'node:fs/promises';
-// import {isIncreasing} from '../../Library/lib.js'
-// import {isDecreasing} from '../../Library/lib.js'
+import {isIncreasing} from '../../Library/lib.js'
+import {isDecreasing} from '../../Library/lib.js'
 
 const fileContent = await readFile('input.txt', 'utf8');
 let safeReports = 0; // Final result
@@ -24,32 +24,4 @@ function difference(min, max, array) {
             return false
     }
     return true
-}
-
-/**
- * Veirify if a sequence of number is increasing or not 
- * @param {array<number>} array 
- * @returns {boolean} isInscreasing
- */
-function isIncreasing(array) {
-
-    for (let i = 0; i < array.length - 1; i++) {
-        if ( array[i] >= array[i+1] ) // if the next number is less than the current number, we return false
-            return false  
-    }
-    return true 
-}
-
-/**
- * Veirify if a sequence of number is decreasing or not 
- * @param {array<number>} array 
- * @returns {boolean} isDecreasing
- */
-function isDecreasing(array) {
-    
-    for (let i = 0; i < array.length - 1; i++) {
-        if ( array[i] <= array[i+1] ) // if the next number is bigger than the current number, we return false
-            return false
-    }
-    return true 
 }

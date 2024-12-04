@@ -1,9 +1,9 @@
 /**
  * List of functions :
- * -isDigit() ====> veirify if caracter is a number or not
- * -isTheStringDigit() ====> veirify if the string is a number
- * -isIncreasing() ====> veirify if the array is increasing or not
- * -isDecreasing() ====> veirify if the array is decreasing or not
+ * -isDigit() ====> verify if caracter is a number or not
+ * -isTheStringDigit() ====> verify if the string is a number
+ * -isIncreasing() ====> verify if the array is increasing or not
+ * -isDecreasing() ====> verify if the array is decreasing or not
  */
 
 // ............................................ || ...........................................................................
@@ -63,11 +63,7 @@ export function isTheStringDigit(car, file, i) {
     }
 }
 
-/**
- * Verify if a sequence of number is increasing or not 
- * @param {array<number>} array 
- * @returns {boolean} isInscreasing
- */
+
 /**
  * Veirify if a sequence of number is increasing or not 
  * @param {array<number>} array 

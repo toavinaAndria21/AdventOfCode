@@ -4,10 +4,11 @@ let fileContent = await readFile('input.txt', 'utf8');
 let sumOfMultiplication = 0; // Final result
 const regex = /mul\((\d{1,3}),(\d{1,3})\)/g; // Representation of 'mul(n, m)' in regex format : n & m are variable numbers of 3 digits maximum
 
+// loop until all substring between 'don't()' and 'do()' are all removed from fileContent ('don't()' is included in suppression)
 while (fileContent.includes("don't()") ) {
-
-    let index = getIndex(fileContent)
-    fileContent = removeSubstring(fileContent, index[0], index[1])
+    
+    let index = getIndex(fileContent) // get index of the first don't() and do()
+    fileContent = removeSubstring(fileContent, index[0], index[1]) // remove the substring between the two index and update fileContent
 
 }
 
@@ -21,6 +22,11 @@ const matches = [...fileContent.matchAll(regex)];
 
 console.log(sumOfMultiplication)
 
+/**
+ * get index of the first don't() and the first following do()
+ * @param {string} str 
+ * @returns {Array<Number>} [indexDont, indexDo]
+ */
 function getIndex(str) {
     let indexDont = undefined
     let indexDo = undefined
@@ -43,6 +49,13 @@ function getIndex(str) {
 }
 
 
+/**
+ * remove a substring (between begin and end) from a string
+ * @param {string} str 
+ * @param {integer} begin 
+ * @param {integer} end 
+ * @returns {string} str
+ */
 function removeSubstring(str, begin, end = str.length) {
     if (begin < 0 || begin >= str.length || begin >= end) {
       throw new Error("Indices invalides !");
