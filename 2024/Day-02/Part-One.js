@@ -13,9 +13,6 @@ eachLine.forEach((line) => {
     }
 });
 
-console.log(safeReports)
-
-
 function difference(min, max, array) {
     let space = 0
     for (let i = 0; i < array.length; i++) {
@@ -25,3 +22,5 @@ function difference(min, max, array) {
     }
     return true
 }
+
+console.log(safeReports)

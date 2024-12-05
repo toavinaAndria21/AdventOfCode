@@ -4,6 +4,7 @@
  * -isTheStringDigit() ====> verify if the string is a number
  * -isIncreasing() ====> verify if the array is increasing or not
  * -isDecreasing() ====> verify if the array is decreasing or not
+ * -removeItemFromArray() ====> remove a specific item from the array 
  */
 
 // ............................................ || ...........................................................................
@@ -90,4 +91,18 @@ export function isDecreasing(array) {
             return false
     }
     return true 
+}
+
+/**
+ * remove a specific item from the array 
+ * @param {*} item 
+ * @param {array<*>} array 
+ * @returns {array<*>} array 
+ */
+export function removeItemFromArray(item, array) {
+
+    let index = array.indexOf(item); // get the index of the item in the array
+
+    if (index > -1) array.splice(index, 1); // remove all items from index 'index' to index + '1' 
+    return array;
 }
